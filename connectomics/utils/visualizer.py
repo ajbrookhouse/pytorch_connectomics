@@ -171,6 +171,20 @@ class Visualizer(object):
         # output shape: BCDHW or BCHW
         if argmax:
             output = torch.argmax(output, 1)
+        # print()
+        # print()
+        # print()
+        # print(torch.cuda.is_available())
+        # print(torch.cuda.device_count())
+        # print(torch.cuda.get_device_name(0))
+        # print("SEM: ",type(self.semantic_colors))
+        # print(type(topt), type(output))
+        # print(type(self.semantic_colors[topt]))
+        # print(output.get_device(), self.semantic_colors[topt].get_device())
+        # self.semantic_colors[topt] = self.semantic_colors[topt].to(0)
+        print("Output", output.get_device())
+        if output.get_device() != -1:
+            self.semantic_colors[topt] = self.semantic_colors[topt].to(output.get_device())
         pred = self.semantic_colors[topt][output]
         if len(pred.size()) == 4:   # 2D Inputs
             pred = pred.permute(0, 3, 1, 2)
