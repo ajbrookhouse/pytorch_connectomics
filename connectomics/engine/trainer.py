@@ -121,8 +121,8 @@ class Trainer(TrainerBase):
             do_vis = self.monitor.update(iter_total, loss, losses_vis,
                                          self.optimizer.param_groups[0]['lr'])
             if do_vis:
-                self.monitor.visualize(
-                    volume, target, pred, weight, iter_total)
+                #self.monitor.visualize(
+                #    volume, target, pred, weight, iter_total)
                 if torch.cuda.is_available():
                     GPUtil.showUtilization(all=True)
 
